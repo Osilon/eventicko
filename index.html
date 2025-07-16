@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Styles/index.css">
+  <script src="Scripts/index.js" defer></script>
+  <title>Eventicko</title>
+</head>
+<body>
+  <header>
+    <div class="header-1">
+      <div class="logoANDtitle">
+        <img src="Assets/logo.png" alt="Logo" width="50" height="50">
+        <h1>Eventicko</h1>
+      </div>
+      <div class="search-bar">
+        <button>Search</button>
+        <input class="event" type="text" placeholder="Look for events...">
+        <input class="location" type="text" placeholder="Location">
+      </div>
+      <img class="cart" src="Assets/cart-icon.png" alt="Cart" width="35" height="35">
+      <button class="register">Login/Sign Up</button>
+    </div>
+    <div class="header-2">
+      <button class="current-page">Home</button>
+      <button class="button">About</button>
+      <button class="button">Tickets</button>
+      <button class="button">Contact</button>
+      <button class="button">Blog</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="slider">
+      <input type="radio" name="slider" id="slide1" checked>
+      <input type="radio" name="slider" id="slide2">
+      <input type="radio" name="slider" id="slide3">
+      <input type="radio" name="slider" id="slide4">
+      <div id="slides">
+          <div id="overflow">
+            <div class="inner">
+                <div class="slide slide_1">
+                  <div class="slide-content">
+                      <h2>Slide 1</h2>
+                      <p>Content for Slide 1</p>
+                  </div>
+                </div>
+                <div class="slide slide_2">
+                  <div class="slide-content">
+                      <h2>Slide 2</h2>
+                      <p>Content for Slide 2</p>
+                  </div>
+                </div>
+                <div class="slide slide_3">
+                  <div class="slide-content">
+                      <h2>Slide 3</h2>
+                      <p>Content for Slide 3</p>
+                  </div>
+                </div>
+                <div class="slide slide_4">
+                  <div class="slide-content">
+                      <h2>Slide 4</h2>
+                      <p>Content for Slide 4</p>
+                  </div>
+                </div>
+            </div>
+          </div>
+      </div>
+      <div id="controls">
+          <label for="slide1"></label>
+          <label for="slide2"></label>
+          <label for="slide3"></label>
+          <label for="slide4"></label>
+      </div>
+      <div id="bullets">
+          <label for="slide1"></label>
+          <label for="slide2"></label>
+          <label for="slide3"></label>
+          <label for="slide4"></label>
+      </div>
+    </div>
+
+    <div class="categories">
+      <div class="cat">Music</div>
+      <div class="cat">Nightlife</div>
+      <div class="cat">Visuals</div>
+      <div class="cat">Performing</div>
+      <div class="cat">Business</div>
+    </div>
+
+    <div class="divider">
+      <center><h1>Events in your area!</h1></center>
+      <center><div class="divider-div"></div></center>
+    </div>
+
+    <div id="container-wrapper"></div>
+  </main>
+
+  <footer>
+    <div class="footer-cont">
+      <div class="left">
+        <a href="">FAQ</a>
+        <a href="">T&C's</a>
+        <a href="">GDPR</a>
+        <a href="">Contact</a>
+      </div>
+      <div class="right">
+        <a href="">Facebook</a>
+        <a href="">Instagram</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
