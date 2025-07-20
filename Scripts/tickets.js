@@ -4,34 +4,32 @@ document.addEventListener('DOMContentLoaded', function() {
   const categoryButtons = document.querySelectorAll('.category-button');
 
   const popularEvents = [
-    { imageUrl: "https://placehold.co/236x177/ff5733/ffffff?text=Concert+Night", description: "An electrifying night of live music." },
-    { imageUrl: "https://placehold.co/236x177/33ff57/ffffff?text=Tech+Summit", description: "Innovate and connect at the annual Tech Summit." },
-    { imageUrl: "https://placehold.co/236x177/3357ff/ffffff?text=Art+Exhibition", description: "Discover captivating works from emerging artists." },
-    { imageUrl: "https://placehold.co/236x177/ff33a1/ffffff?text=Food+Festival", description: "A culinary journey with flavors from around the world." },
-    { imageUrl: "https://placehold.co/236x177/a133ff/ffffff?text=Sports+Match", description: "Feel the excitement of a live sports showdown." },
-    { imageUrl: "https://placehold.co/236x177/ffb833/ffffff?text=Comedy+Show", description: "Laugh until your sides hurt with top comedians." }
+    { imageUrl: "https://placehold.co/236x177/ff5733/ffffff?text=Concert+Night"},
+    { imageUrl: "https://placehold.co/236x177/33ff57/ffffff?text=Tech+Summit"},
+    { imageUrl: "https://placehold.co/236x177/3357ff/ffffff?text=Art+Exhibition"},
+    { imageUrl: "https://placehold.co/236x177/ff33a1/ffffff?text=Food+Festival"},
+    { imageUrl: "https://placehold.co/236x177/a133ff/ffffff?text=Sports+Match"},
+    { imageUrl: "https://placehold.co/236x177/ffb833/ffffff?text=Comedy+Show"}
   ];
 
   const categoryEvents = [
-    { imageUrl: "https://placehold.co/236x177/80ff80/ffffff?text=Workshop", category: "workshop", description: "Hands-on learning session." },
-    { imageUrl: "https://placehold.co/236x177/ff8080/ffffff?text=Theater", category: "performing", description: "Dramatic performances and captivating storytelling." },
-    { imageUrl: "https://placehold.co/236x177/ff33a1/ffffff?text=Outdoor", category: "sports", description: "Adventure in the great outdoors." },
-    { imageUrl: "https://placehold.co/236x177/a133ff/ffffff?text=Nightclub", category: "nightlife", description: "Dance the night away with amazing DJs." },
-    { imageUrl: "https://placehold.co/236x177/ff5733/ffffff?text=Jazz+Night", category: "music", description: "Smooth jazz melodies for a relaxed evening." },
-    { imageUrl: "https://placehold.co/236x177/33ff57/ffffff?text=Startup+Pitch", category: "business", description: "Witness the next big ideas from innovative startups." },
-    { imageUrl: "https://placehold.co/236x177/33ff57/ffffff?text=Sculpture+Show", category: "visuals", description: "An exhibition of intricate sculptures." },
-    { imageUrl: "https://placehold.co/236x177/ff33a1/ffffff?text=Concert", category: "music", description: "Rock out to your favorite band." },
-    { imageUrl: "https://placehold.co/236x177/ffb833/ffffff?text=Basketball+Game", category: "sports", description: "Catch an exciting basketball match." }
+    { imageUrl: "https://placehold.co/236x177/80ff80/ffffff?text=Workshop", category: "workshop"},
+    { imageUrl: "https://placehold.co/236x177/ff8080/ffffff?text=Theater", category: "performing"},
+    { imageUrl: "https://placehold.co/236x177/ff33a1/ffffff?text=Outdoor", category: "sports"},
+    { imageUrl: "https://placehold.co/236x177/a133ff/ffffff?text=Nightclub", category: "nightlife"},
+    { imageUrl: "https://placehold.co/236x177/ff5733/ffffff?text=Jazz+Night", category: "music"},
+    { imageUrl: "https://placehold.co/236x177/33ff57/ffffff?text=Startup+Pitch", category: "business"},
+    { imageUrl: "https://placehold.co/236x177/33ff57/ffffff?text=Sculpture+Show", category: "visuals"},
+    { imageUrl: "https://placehold.co/236x177/ff33a1/ffffff?text=Concert", category: "music"},
+    { imageUrl: "https://placehold.co/236x177/ffb833/ffffff?text=Basketball+Game", category: "sports"}
   ];
 
   function generateCardHtml(event) {
-    const eventDescription = event.description || '';
     const dataCategoryAttribute = event.category ? `data-category="${event.category}"` : '';
     return `
       <div class="container" ${dataCategoryAttribute}>
         <div class="main">
           <img src="${event.imageUrl}" alt="Event Image"/>
-          <div class="card-description">${eventDescription}</div>
         </div>
         <div class="divider-cont"></div>
         <div class="side-panel">
@@ -55,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   populateWrapper(containerWrapper1, popularEvents);
-
   populateWrapper(containerWrapper2, categoryEvents);
 
   function filterCards(selectedCategory) {
@@ -82,8 +79,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
       const category = this.getAttribute('data-category');
       filterCards(category);
+      if (containerWrapper2) {
+        containerWrapper2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
   });
 
-  filterCards('all');
+  const urlParams = new URLSearchParams(window.location.search);
+  const categoryFromUrl = urlParams.get('category');
+
+  if (categoryFromUrl) {
+    const targetButton = document.querySelector(`.category-button[data-category="${categoryFromUrl}"]`);
+    if (targetButton) {
+      categoryButtons.forEach(btn => btn.classList.remove('active'));
+      targetButton.classList.add('active');
+      filterCards(categoryFromUrl);
+
+      if (containerWrapper2) {
+        containerWrapper2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+    } else {
+      filterCards('all');
+      document.querySelector('.category-button[data-category="all"]').classList.add('active');
+    }
+  } else {
+    filterCards('all');
+    document.querySelector('.category-button[data-category="all"]').classList.add('active');
+  }
 });

@@ -10,6 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
     { imageUrl: "https://placehold.co/236x177/ffb833/ffffff?text=Comedy+Show"}
   ];
 
+  const homeCategoryButtons = document.querySelectorAll('.categories .category-button');
+
+  homeCategoryButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const category = this.getAttribute('data-category');
+      // Redirect to tickets.html with the selected category as a query parameter
+      window.location.href = `Pages/tickets.html?category=${category}`;
+    });
+  });
+
   function generateCardHtml(event) {
     return `
       <div class="container">
