@@ -3,26 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const containerWrapper2 = document.getElementById('container-wrapper2');
   const categoryButtons = document.querySelectorAll('.category-button');
 
-  const popularEvents = [
-    { imageUrl: "https://placehold.co/236x177/ff5733/ffffff?text=Concert+Night"},
-    { imageUrl: "https://placehold.co/236x177/33ff57/ffffff?text=Tech+Summit"},
-    { imageUrl: "https://placehold.co/236x177/3357ff/ffffff?text=Art+Exhibition"},
-    { imageUrl: "https://placehold.co/236x177/ff33a1/ffffff?text=Food+Festival"},
-    { imageUrl: "https://placehold.co/236x177/a133ff/ffffff?text=Sports+Match"},
-    { imageUrl: "https://placehold.co/236x177/ffb833/ffffff?text=Comedy+Show"}
-  ];
-
-  const categoryEvents = [
-    { imageUrl: "https://placehold.co/236x177/80ff80/ffffff?text=Workshop", category: "workshop"},
-    { imageUrl: "https://placehold.co/236x177/ff8080/ffffff?text=Theater", category: "performing"},
-    { imageUrl: "https://placehold.co/236x177/ff33a1/ffffff?text=Outdoor", category: "sports"},
-    { imageUrl: "https://placehold.co/236x177/a133ff/ffffff?text=Nightclub", category: "nightlife"},
-    { imageUrl: "https://placehold.co/236x177/ff5733/ffffff?text=Jazz+Night", category: "music"},
-    { imageUrl: "https://placehold.co/236x177/33ff57/ffffff?text=Startup+Pitch", category: "business"},
-    { imageUrl: "https://placehold.co/236x177/33ff57/ffffff?text=Sculpture+Show", category: "visuals"},
-    { imageUrl: "https://placehold.co/236x177/ff33a1/ffffff?text=Concert", category: "music"},
-    { imageUrl: "https://placehold.co/236x177/ffb833/ffffff?text=Basketball+Game", category: "sports"}
-  ];
+  let allEvents = [];
 
   function generateCardHtml(event) {
     const dataCategoryAttribute = event.category ? `data-category="${event.category}"` : '';
@@ -44,6 +25,10 @@ document.addEventListener('DOMContentLoaded', function() {
   function populateWrapper(wrapperElement, eventsSubset) {
     if (wrapperElement) {
       wrapperElement.innerHTML = '';
+      if (eventsSubset.length === 0) {
+        wrapperElement.innerHTML = '<p>No events found in this section.</p>';
+        return;
+      }
       eventsSubset.forEach(event => {
         wrapperElement.innerHTML += generateCardHtml(event);
       });
@@ -51,9 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
       console.error('Wrapper element not found. Check your HTML IDs.');
     }
   }
-
-  populateWrapper(containerWrapper1, popularEvents);
-  populateWrapper(containerWrapper2, categoryEvents);
 
   function filterCards(selectedCategory) {
     if (!containerWrapper2) {
@@ -72,6 +54,65 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  async function fetchAndRenderEvents() {
+    try {
+      const response = await fetch('../Scripts/fetch_events.php');
+
+      if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (data.error) {
+        console.error("PHP Error:", data.error);
+        if (containerWrapper1) containerWrapper1.innerHTML = '<p>Error loading events. Please try again later.</p>';
+        if (containerWrapper2) containerWrapper2.innerHTML = '<p>Error loading events. Please try again later.</p>';
+        return;
+      }
+
+      allEvents = data;
+
+      const popularEvents = allEvents.filter(event => event.is_popular == 1);
+
+      const categoryEvents = allEvents;
+
+      populateWrapper(containerWrapper1, popularEvents);
+      populateWrapper(containerWrapper2, categoryEvents);
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const categoryFromUrl = urlParams.get('category');
+
+      if (categoryFromUrl) {
+        const targetButton = document.querySelector(`.category-button[data-category="${categoryFromUrl}"]`);
+        if (targetButton) {
+          categoryButtons.forEach(btn => btn.classList.remove('active'));
+          targetButton.classList.add('active');
+          filterCards(categoryFromUrl);
+          if (containerWrapper2) {
+            containerWrapper2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        } else {
+          filterCards('all');
+          const allButton = document.querySelector('.category-button[data-category="all"]');
+          if(allButton) allButton.classList.add('active');
+        }
+      } else {
+        filterCards('all');
+        const allButton = document.querySelector('.category-button[data-category="all"]');
+        if(allButton) allButton.classList.add('active');
+      }
+
+    } catch (error) {
+      console.error('Failed to fetch events:', error);
+      const errorMessage = '<p>Could not load events. Please ensure XAMPP is running and try refreshing the page.</p>';
+      if (containerWrapper1) containerWrapper1.innerHTML = errorMessage;
+      if (containerWrapper2) containerWrapper2.innerHTML = errorMessage;
+    }
+  }
+
+  fetchAndRenderEvents();
+
   categoryButtons.forEach(button => {
     button.addEventListener('click', function() {
       categoryButtons.forEach(btn => btn.classList.remove('active'));
@@ -84,27 +125,4 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const categoryFromUrl = urlParams.get('category');
-
-  if (categoryFromUrl) {
-    const targetButton = document.querySelector(`.category-button[data-category="${categoryFromUrl}"]`);
-    if (targetButton) {
-      categoryButtons.forEach(btn => btn.classList.remove('active'));
-      targetButton.classList.add('active');
-      filterCards(categoryFromUrl);
-
-      if (containerWrapper2) {
-        containerWrapper2.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-
-    } else {
-      filterCards('all');
-      document.querySelector('.category-button[data-category="all"]').classList.add('active');
-    }
-  } else {
-    filterCards('all');
-    document.querySelector('.category-button[data-category="all"]').classList.add('active');
-  }
 });

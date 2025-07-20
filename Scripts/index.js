@@ -1,30 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
   const containWrapper = document.getElementById('container-wrapper');
-
-  const events = [
-    { imageUrl: "https://placehold.co/236x177/ff5733/ffffff?text=Concert"},
-    { imageUrl: "https://placehold.co/236x177/33ff57/ffffff?text=Tech+Summit"},
-    { imageUrl: "https://placehold.co/236x177/3357ff/ffffff?text=Football+Match"},
-    { imageUrl: "https://placehold.co/236x177/ff33a1/ffffff?text=Food+Festival"},
-    { imageUrl: "https://placehold.co/236x177/a133ff/ffffff?text=Sports+Match"},
-    { imageUrl: "https://placehold.co/236x177/ffb833/ffffff?text=Comedy+Show"}
-  ];
-
   const homeCategoryButtons = document.querySelectorAll('.categories .category-button');
-
-  homeCategoryButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      const category = this.getAttribute('data-category');
-      // Redirect to tickets.html with the selected category as a query parameter
-      window.location.href = `Pages/tickets.html?category=${category}`;
-    });
-  });
 
   function generateCardHtml(event) {
     return `
       <div class="container">
           <div class="main">
-              <img src="${event.imageUrl}" alt="Event Image"/>
+            <img src="${event.imageUrl}" alt="Event Image"/>
           </div>
           <div class="divider-cont"></div>
           <div class="side-panel">
@@ -37,8 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function populateWrapper(wrapperElement, eventsSubset) {
-    if (wrapperElement) { // Check if the element was found
+    if (wrapperElement) {
       wrapperElement.innerHTML = '';
+      if (eventsSubset.length === 0) {
+          wrapperElement.innerHTML = '<p>No events found in Galați.</p>';
+          return;
+      }
       eventsSubset.forEach(event => {
         wrapperElement.innerHTML += generateCardHtml(event);
       });
@@ -47,5 +33,40 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  populateWrapper(containWrapper, events);
+  async function fetchAndRenderLocalEvents() {
+    try {
+      const response = await fetch('./Scripts/fetch_events.php');
+
+      if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const allEventsData = await response.json(); // Get all events
+
+      if (allEventsData.error) {
+        console.error("PHP Error:", allEventsData.error);
+        if (containWrapper) containWrapper.innerHTML = '<p>Error loading events. Please try again later.</p>';
+        return;
+      }
+
+      const galatiEvents = allEventsData.filter(event => event.location === 'Galati');
+
+      populateWrapper(containWrapper, galatiEvents);
+
+    } catch (error) {
+      console.error('Failed to fetch events:', error);
+      const errorMessage = '<p>Could not load events. Please ensure XAMPP is running and try refreshing the page.</p>';
+      if (containWrapper) containWrapper.innerHTML = errorMessage;
+    }
+  }
+
+  fetchAndRenderLocalEvents();
+
+  // Event listeners for category buttons (unchanged)
+  homeCategoryButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const category = this.getAttribute('data-category');
+      window.location.href = `Pages/tickets.html?category=${category}`;
+    });
+  });
 });
