@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../Styles/tickets.css">
+  <script src="../Scripts/tickets.js" defer></script>
+  <title>Eventicko</title>
+</head>
+<body>
+  <header>
+    <div class="header-1">
+      <div class="logoANDtitle">
+        <img src="../Assets/logo.png" alt="Logo" width="50" height="50">
+        <h1>Eventicko</h1>
+      </div>
+      <div class="search-bar">
+        <button>Search</button>
+        <input class="event" type="text" placeholder="Look for events...">
+        <input class="location" type="text" placeholder="Location">
+      </div>
+      <img class="cart" src="../Assets/cart-icon.png" alt="Cart" width="35" height="35">
+      <button class="register">Login/Sign Up</button>
+    </div>
+    <div class="header-2">
+      <a href="../index.html"><button class="button">Home</button></a>
+      <a href="./about.html"><button class="button">About</button></a>
+      <a href="./tickets.html"><button class="current-page">Tickets</button></a>
+      <a href="./contact.html"><button class="button">Contact</button></a>
+      <a href="./blog.html"><button class="button">Blog</button></a>
+    </div>
+  </header>
+
+  <main>
+    <div class="divider">
+      <center><h1>Most Popular</h1></center>
+      <center><div class="divider-div"></div></center>
+    </div>
+    <div id="container-wrapper"></div>
+    <div class="divider2">
+      <center><h1>By Category</h1></center>
+      <center><div class="divider-div"></div></center>
+    </div>
+    <div class="category-buttons">
+            <button class="category-button active" data-category="all">All Events</button>
+            <button class="category-button" data-category="music">Music</button>
+            <button class="category-button" data-category="nightlife">Nightlife</button>
+            <button class="category-button" data-category="visuals">Visuals</button>
+            <button class="category-button" data-category="performing">Performing</button>
+            <button class="category-button" data-category="business">Business</button>
+            <button class="category-button" data-category="sports">Sports</button>
+            <button class="category-button" data-category="workshop">Workshops</button>
+        </div>
+    <div id="container-wrapper2"></div>
+  </main>
+
+  <footer>
+    <div class="footer-cont">
+      <div class="left">
+        <a href="">FAQ</a>
+        <a href="">T&C's</a>
+        <a href="">GDPR</a>
+        <a href="./contact.html">Contact</a>
+      </div>
+      <div class="right">
+        <a href="">Facebook</a>
+        <a href="">Instagram</a>
+      </div>
+    </div>
+  </footer>
+  </footer>
+</body>
+</html>
