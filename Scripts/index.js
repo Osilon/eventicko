@@ -4,16 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function generateCardHtml(event) {
     return `
-      <div class="container">
-          <div class="main">
-            <img src="${event.imageUrl}" alt="Event Image"/>
-          </div>
-          <div class="divider-cont"></div>
-          <div class="side-panel">
-              <i class="fa-heart"><img src="https://cdn-icons-png.flaticon.com/512/151/151910.png" alt="heart-icon" width="30" height="30"></i>
-              <i class="fa-bookmark"><img src="https://cdn-icons-png.flaticon.com/512/25/25667.png" alt="bookmark-icon" width="30" height="30"></i>
-              <i class="fa-share-alt"><img src="https://cdn-icons-png.flaticon.com/512/1358/1358023.png" alt="share-icon" width="30" height="30"></i>
-          </div>
+      <div class="container" onclick="window.location.href='Pages/event-detail.html?id=${event.id}'" style="cursor: pointer;">
+        <div class="main">
+          <img src="${event.imageUrl}" alt="Event Image"/>
+        </div>
+        <div class="divider-cont"></div>
+        <div class="side-panel">
+          <i class="fa-heart"><img src="https://cdn-icons-png.flaticon.com/512/151/151910.png" alt="heart-icon" width="30" height="30"></i>
+          <i class="fa-bookmark"><img src="https://cdn-icons-png.flaticon.com/512/25/25667.png" alt="bookmark-icon" width="30" height="30"></i>
+          <i class="fa-share-alt"><img src="https://cdn-icons-png.flaticon.com/512/1358/1358023.png" alt="share-icon" width="30" height="30"></i>
+        </div>
       </div>
     `;
   }
@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (wrapperElement) {
       wrapperElement.innerHTML = '';
       if (eventsSubset.length === 0) {
-          wrapperElement.innerHTML = '<p>No events found in Galați.</p>';
-          return;
+        wrapperElement.innerHTML = '<p>No events found in Galați.</p>';
+        return;
       }
       eventsSubset.forEach(event => {
         wrapperElement.innerHTML += generateCardHtml(event);
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const response = await fetch('./Scripts/fetch_events.php');
 
       if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const allEventsData = await response.json(); // Get all events

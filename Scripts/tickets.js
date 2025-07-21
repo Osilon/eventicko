@@ -7,8 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function generateCardHtml(event) {
     const dataCategoryAttribute = event.category ? `data-category="${event.category}"` : '';
+    // Add onclick event to redirect to event detail page with event ID
     return `
-      <div class="container" ${dataCategoryAttribute}>
+      <div class="container" ${dataCategoryAttribute} onclick="window.location.href='event-detail.html?id=${event.id}'" style="cursor: pointer;">
         <div class="main">
           <img src="${event.imageUrl}" alt="Event Image"/>
         </div>
