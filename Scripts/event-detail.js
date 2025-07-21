@@ -105,5 +105,8 @@ function displayEventDetails(event) {
 }
 
 function handleBuyTickets() {
-  alert(`Purchase ticket - Feature coming soon!`);
+  const urlParams = new URLSearchParams(window.location.search);
+  const eventId = urlParams.get('id');
+  
+  window.location.href = `checkout.html?id=${eventId}`;
 }
