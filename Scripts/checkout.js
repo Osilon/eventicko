@@ -55,7 +55,7 @@ function displayCheckoutForm(event) {
           <strong>Location:</strong> ${event.location}
         </div>
         <div class="summary-item">
-          <strong>Price:</strong> $${event.price}
+          <strong>Price:</strong> ${event.price} Ron
         </div>
       </div>
       
