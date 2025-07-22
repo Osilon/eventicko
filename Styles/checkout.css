@@ -120,7 +120,7 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    height: 40px;
+    height: 30px;
     width: 80px;
     border-radius: 30px;
     font-weight: bold;
@@ -140,7 +140,7 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    height: 40px;
+    height: 30px;
     width: 80px;
     border-radius: 30px;
     font-weight: bold;
@@ -290,16 +290,22 @@ main {
 /* Footer Section */
 .footer-cont {
     background-color: #13347B;
-    height: 50px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    color: white;
+}
+
+.copyright {
+    margin-right: 63px;
 }
 
 .footer-cont a {
     color: white;
     text-decoration: none;
+    font-size: 16px;
 }
 
 .left {

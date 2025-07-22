@@ -5,14 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
   function generateCardHtml(event) {
     return `
       <div class="container" onclick="window.location.href='Pages/event-detail.html?id=${event.id}'" style="cursor: pointer;">
-        <div class="main">
+        <div class="upper-part">
           <img src="${event.imageUrl}" alt="Event Image"/>
         </div>
-        <div class="divider-cont"></div>
-        <div class="side-panel">
-          <i class="fa-heart"><img src="https://cdn-icons-png.flaticon.com/512/151/151910.png" alt="heart-icon" width="25" height="25"></i>
-          <i class="fa-bookmark"><img src="https://cdn-icons-png.flaticon.com/512/25/25667.png" alt="bookmark-icon" width="25" height="25"></i>
-          <i class="fa-share-alt"><img src="https://cdn-icons-png.flaticon.com/512/1358/1358023.png" alt="share-icon" width="25" height="25"></i>
+        <div class="lower-part">
+          <div class="price">${event.price} Ron</div>
+          <div class="buy-now">Open Event</div>
         </div>
       </div>
     `;

@@ -120,7 +120,7 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    height: 40px;
+    height: 30px;
     width: 80px;
     border-radius: 30px;
     font-weight: bold;
@@ -140,7 +140,7 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    height: 40px;
+    height: 30px;
     width: 80px;
     border-radius: 30px;
     font-weight: bold;
@@ -164,7 +164,7 @@ body {
 
 .divider-div {
     margin-top: 8px;
-    height: 10px;
+    height: 5px;
     background-color: #13347B;
     width: 40%;
     border-radius: 30px;
@@ -205,69 +205,49 @@ body {
 
 /* Event Container Styles */
 .container {
-    width: 300px;
-    height: 180px;
+    width: 210px;
+    height: 350px;
     background-color: #d3d3d3;
-    border: 2px solid black;
     border-radius: 12px;
     display: flex;
     overflow: hidden;
     cursor: pointer;
-}
-
-.container:hover {
-    background-color: #333;
-    border-color: #333;
-}
-
-.main {
-    flex: 1;
-}
-
-/* Divider inside the container */
-.divider-cont {
-    width: 2px;
-    background: black;
-    transition: background-color 0.3s ease;
-}
-
-.container:hover .divider-cont {
-    background-color: #333;
-}
-
-/* Side Panel within the container */
-.side-panel {
-    width: 60px;
+    box-shadow: 10px 10px 5px rgb(97, 97, 97);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    padding: 10px 0;
 }
 
-.side-panel img {
-    filter: brightness(0); /* Make icons black by default */
-    transition: filter 0.3s ease;
+.container .upper-part img{
+    width: 210px;
+    height: 300px;
 }
 
-/* Hover effects for icons in side panel */
-.container:hover .side-panel .fa-heart img {
-    filter: invert(30%) sepia(90%) saturate(1000%) hue-rotate(340deg) brightness(100%) contrast(100%);
+.container .lower-part {
+    display: flex;
+    justify-content: space-between;
 }
 
-.container:hover .side-panel .fa-bookmark img {
-    filter: invert(50%) sepia(100%) saturate(2000%) hue-rotate(180deg) brightness(100%) contrast(100%);
+.container .lower-part .price {
+    font-size: 18px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    font-weight: bold;
+    color: green;
 }
 
-.container:hover .side-panel .fa-share-alt img {
-    filter: invert(100%);
+.container .lower-part .buy-now {
+    font-size: 18px;
+    margin-right: 10px;
+    margin-top: 10px;
+    font-weight: bold;
+    color: black;
+    text-decoration: underline;
 }
 
-/* Cursor for side panel icons */
-.container .side-panel .fa-heart,
-.container .side-panel .fa-bookmark,
-.container .side-panel .fa-share-alt {
-    cursor: pointer;
+.container:hover{
+    transform: scale(1.05);
+    box-shadow: 15px 15px 10px rgb(97, 97, 97);
 }
 
 /* Container Wrapper for Event Cards */
@@ -275,9 +255,10 @@ body {
 #container-wrapper2 {
     margin-top: 50px;
     display: grid;
-    grid-template-columns: repeat(3, 260px);
+    grid-template-columns: repeat(3, 160px);
     gap: 30px;
     column-gap: 110px;
+    row-gap: 50px;
     padding: 20px;
     justify-content: center;
     margin-bottom: 50px;
@@ -286,16 +267,22 @@ body {
 /* Footer Section */
 .footer-cont {
     background-color: #13347B;
-    height: 50px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    color: white;
+}
+
+.copyright {
+    margin-right: 63px;
 }
 
 .footer-cont a {
     color: white;
     text-decoration: none;
+    font-size: 16px;
 }
 
 .left {
