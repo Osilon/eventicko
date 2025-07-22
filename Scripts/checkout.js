@@ -96,7 +96,6 @@ function displayCheckoutForm(event) {
     </div>
   `;
   
-  // Add form submission handler
   document.getElementById('checkout-form').addEventListener('submit', handleCheckoutSubmit);
 }
 
@@ -118,7 +117,6 @@ async function handleCheckoutSubmit(e) {
     const result = await response.json();
     
     if (result.success) {
-      // Redirect to confirmation page with ticket code
       window.location.href = `confirmation.html?ticket=${result.ticket_code}`;
     } else {
       alert('Error: ' + result.error);

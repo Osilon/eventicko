@@ -154,6 +154,7 @@ body {
 }
 
 .divider2 {
+  margin-top: 90px;
   margin-bottom: 50px;
 }
 
@@ -274,7 +275,7 @@ body {
 #container-wrapper2 {
     margin-top: 50px;
     display: grid;
-    grid-template-columns: repeat(3, 300px);
+    grid-template-columns: repeat(3, 260px);
     gap: 30px;
     column-gap: 110px;
     padding: 20px;

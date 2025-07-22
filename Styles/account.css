@@ -147,32 +147,6 @@ body {
     cursor: pointer;
 }
 
-/* T&C's */
-.divider {
-    margin-top: 80px;
-}
-
-.divider h1 {
-    margin-bottom: 8px;
-}
-
-.divider-div {
-    margin-top: 8px;
-    height: 10px;
-    background-color: #13347B;
-    width: 40%;
-    border-radius: 30px;
-}
-
-.terms-content {
-    font-size: 18px;
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-
 /* Footer Section */
 .footer-cont {
     background-color: #13347B;
