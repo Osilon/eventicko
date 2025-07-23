@@ -1,71 +1,80 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const cardsWrapper = document.getElementById('blog-cards-wrapper');
+document.addEventListener('DOMContentLoaded', function() {
+  fetchBlogs();
+});
 
-  function generateBlogPostCardHtml(post) {
-    const title = post.title || 'Untitled Blog Post';
-    const shortContent = post.short_content || 'No brief description available.';
-    const imageUrl = post.image_url || 'https://via.placeholder.com/256x256?text=No+Image';
-    const author = post.author ? `By ${post.author}` : 'Unknown Author';
-    const publishDate = post.publish_date ? new Date(post.publish_date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
+async function fetchBlogs() {
+  try {
+    const response = await fetch('../Scripts/fetch_blogs.php');
+    const blogs = await response.json();
+    
+    if (blogs.error) {
+      displayError(blogs.error);
+      return;
+    }
+    
+    displayBlogs(blogs);
+    
+  } catch (error) {
+    console.error('Error fetching blogs:', error);
+    displayError('Failed to load blog posts. Please try again later.');
+  }
+}
 
+function displayBlogs(blogs) {
+  const container = document.getElementById('blog-cards-wrapper');
+  
+  if (blogs.length === 0) {
+    container.innerHTML = '<p>No blog posts available at the moment.</p>';
+    return;
+  }
+  
+  const blogCards = blogs.map(blog => {
+    // Format the publish date
+    const publishDate = new Date(blog.publish_date);
+    const formattedDate = publishDate.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+    
+    // Truncate short_content if it's too long
+    const shortContent = blog.short_content.length > 150 
+      ? blog.short_content.substring(0, 150) + '...' 
+      : blog.short_content;
+    
     return `
-      <div class="card-container">
-        <div class="image-placeholder">
-          <img src="${imageUrl}" alt="${title} Image"/>
+      <div class="blog-card" onclick="navigateToBlog(${blog.id})" style="cursor: pointer;">
+        <div class="blog-image-container">
+          <img src="${blog.image_url}" alt="${blog.title}" class="blog-image" onerror="this.src='../Assets/placeholder-image.jpg'">
         </div>
-        <div class="content-area">
-          <h3>${title}</h3>
-          <p class="author-date">${author}${publishDate ? ` - ${publishDate}` : ''}</p>
-          <p class="text-content">
-            ${shortContent}
-          </p>
+        <div class="blog-content">
+          <div class="blog-meta">
+            <span class="blog-author">By ${blog.author}</span>
+            <span class="blog-date">${formattedDate}</span>
+          </div>
+          <h3 class="blog-title">${blog.title}</h3>
+          <p class="blog-excerpt">${shortContent}</p>
+          <div class="blog-read-more">
+            Read More →
+          </div>
         </div>
       </div>
     `;
-  }
+  }).join('');
+  
+  container.innerHTML = blogCards;
+}
 
-  async function fetchAndRenderBlogPosts() {
-    if (cardsWrapper) {
-      cardsWrapper.innerHTML = '<p>Loading blog posts...</p>';
-    } else {
-      console.error("Error: 'blog-cards-wrapper' element not found in blog.html.");
-      return;
-    }
+function navigateToBlog(blogId) {
+  window.location.href = `./blog-detail.html?id=${blogId}`;
+}
 
-    try {
-      const response = await fetch('../Scripts/fetch_blogs.php'); // This now fetches ALL content for ALL posts
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      if (data.error) {
-        console.error("PHP Error:", data.error);
-        cardsWrapper.innerHTML = '<p>Error loading blog posts. Please try again later.</p>';
-        return;
-      }
-
-      // *** IMPORTANT CHANGE: Store the entire data array in localStorage ***
-      localStorage.setItem('allBlogPosts', JSON.stringify(data));
-
-      cardsWrapper.innerHTML = ''; // Clear loading message
-
-      if (data.length === 0) {
-        cardsWrapper.innerHTML = '<p>No blog posts found at the moment.</p>';
-        return;
-      }
-
-      data.forEach(post => {
-        cardsWrapper.innerHTML += generateBlogPostCardHtml(post);
-      });
-
-    } catch (error) {
-      console.error('Failed to fetch blog posts:', error);
-      cardsWrapper.innerHTML = '<p>Could not load blog posts. Please ensure XAMPP is running, the database is configured correctly, and `fetch_blogs.php` path is accurate.</p>';
-    }
-  }
-
-  fetchAndRenderBlogPosts();
-});
+function displayError(message) {
+  const container = document.getElementById('blog-cards-wrapper');
+  container.innerHTML = `
+    <div class="error-message">
+      <h3>Error loading blogs</h3>
+      <p>${message}</p>
+    </div>
+  `;
+}

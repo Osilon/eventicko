@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         <div class="lower-part">
           <div class="price">${event.price} Ron</div>
-          <div class="buy-now">Open Event</div>
+          <div class="buy-now">Open Event →</div>
         </div>
       </div>
     `;

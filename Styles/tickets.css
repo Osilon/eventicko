@@ -148,7 +148,6 @@ body {
 }
 
 /* Divider */
-
 .divider {
     margin-top: 80px;
 }
@@ -237,12 +236,11 @@ body {
 }
 
 .container .lower-part .buy-now {
-    font-size: 18px;
+    font-size: 16px;
     margin-right: 10px;
-    margin-top: 10px;
+    margin-top: 12px;
     font-weight: bold;
-    color: black;
-    text-decoration: underline;
+    color: #3b82f6;
 }
 
 .container:hover{
