@@ -29,10 +29,53 @@ async function fetchEventForCheckout(eventId) {
     
     displayCheckoutForm(eventData);
     
+    // NEW: Check if user is logged in and auto-fill
+    await autoFillUserInfo();
+    
   } catch (error) {
     console.error('Failed to fetch event details:', error);
     document.getElementById('checkout-container').innerHTML = 
       '<div class="error">Failed to load checkout. <a href="./tickets.html">Return to tickets</a></div>';
+  }
+}
+
+// NEW FUNCTION: Auto-fill user info if logged in
+async function autoFillUserInfo() {
+  try {
+    const response = await fetch('../Scripts/get_user_info.php');
+    const data = await response.json();
+    
+    if (data.logged_in) {
+      // Fill the form with user data
+      const nameField = document.getElementById('customer-name');
+      const emailField = document.getElementById('customer-email');
+      const phoneField = document.getElementById('customer-phone');
+      
+      if (nameField) nameField.value = data.user.full_name || '';
+      if (emailField) emailField.value = data.user.email || '';
+      if (phoneField) phoneField.value = data.user.phone_number || '';
+      
+      // Show a message that info was auto-filled
+      const form = document.getElementById('checkout-form');
+      if (form) {
+        const message = document.createElement('div');
+        message.style.background = '#d4edda';
+        message.style.color = '#155724';
+        message.style.padding = '10px';
+        message.style.borderRadius = '5px';
+        message.style.marginBottom = '20px';
+        message.style.border = '1px solid #c3e6cb';
+        message.innerHTML = '✅ Your information has been auto-filled from your account';
+        
+        // Insert the message after the "Your Information" heading
+        const infoHeading = form.querySelector('h2');
+        if (infoHeading) {
+          infoHeading.insertAdjacentElement('afterend', message);
+        }
+      }
+    }
+  } catch (error) {
+    console.log('User not logged in or error checking login status');
   }
 }
 
@@ -87,7 +130,7 @@ function displayCheckoutForm(event) {
         
         <input type="hidden" name="event_id" value="${event.id}">
         
-        <button type="submit" class="purchase-btn">Complete Purchase - $${event.price}</button>
+        <button type="submit" class="purchase-btn">Complete Purchase - ${event.price} Ron</button>
       </form>
       
       <div class="back-link">
@@ -121,7 +164,7 @@ async function handleCheckoutSubmit(e) {
     } else {
       alert('Error: ' + result.error);
       submitButton.disabled = false;
-      submitButton.textContent = 'Complete Purchase';
+      submitButton.textContent = 'Complete Purchase - ' + formData.get('event_price') + ' Ron';
     }
     
   } catch (error) {
