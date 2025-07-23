@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../Styles/event-detail.css">
-  <script src="../Scripts/shared-search.js"></script>
-  <script src="../Scripts/event-detail.js" defer></script>
-  <title>Event Details - Eventicko</title>
+  <link rel="stylesheet" href="../Styles/search-results.css">
+  <script src="../Scripts/search-results.js" defer></script>
+  <title>Search Results - Eventicko</title>
 </head>
 <body>
   <header>
@@ -16,9 +15,9 @@
         <a href="../index.html" style="text-decoration: none;"><h1>Eventicko</h1></a>
       </div>
       <div class="search-bar">
-        <button>Search</button>
-        <input class="event" type="text" placeholder="Look for events...">
-        <input class="location" type="text" placeholder="Location">
+        <button id="search-button">Search</button>
+        <input class="event" type="text" placeholder="Look for events..." id="search-event-input">
+        <input class="location" type="text" placeholder="Location" id="search-location-input">
       </div>
       <img class="cart" src="../Assets/cart-icon.png" alt="Cart" width="35" height="35">
       <a href="./account.html"><button class="register">Login/Sign Up</button></a>
@@ -33,8 +32,17 @@
   </header>
 
   <main>
-    <div id="event-container">
-      <div class="loading">Loading event details...</div>
+    <div class="search-header">
+      <h1 id="search-title">Search Results</h1>
+      <div class="search-info" id="search-info"></div>
+    </div>
+
+    <div class="divider">
+      <center><div class="divider-div"></div></center>
+    </div>
+
+    <div id="search-results-wrapper">
+      <p>Loading search results...</p>
     </div>
   </main>
 

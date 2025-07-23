@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const allEventsData = await response.json(); // Get all events
+      const allEventsData = await response.json();
 
       if (allEventsData.error) {
         console.error("PHP Error:", allEventsData.error);
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   fetchAndRenderLocalEvents();
 
-  // Event listeners for category buttons (unchanged)
+  // Event listeners for category buttons
   homeCategoryButtons.forEach(button => {
     button.addEventListener('click', function() {
       const category = this.getAttribute('data-category');
