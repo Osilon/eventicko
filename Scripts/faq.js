@@ -9,9 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const answer = item.querySelector('.faq-answer');
       if (item.classList.contains('active')) {
-          answer.style.maxHeight = answer.scrollHeight + "px";
+        answer.style.maxHeight = answer.scrollHeight + "px";
       } else {
-          answer.style.maxHeight = "0";
+        answer.style.maxHeight = "0";
       }
   });});
 });
