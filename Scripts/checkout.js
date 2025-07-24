@@ -29,7 +29,6 @@ async function fetchEventForCheckout(eventId) {
     
     displayCheckoutForm(eventData);
     
-    // NEW: Check if user is logged in and auto-fill
     await autoFillUserInfo();
     
   } catch (error) {
@@ -39,14 +38,12 @@ async function fetchEventForCheckout(eventId) {
   }
 }
 
-// NEW FUNCTION: Auto-fill user info if logged in
 async function autoFillUserInfo() {
   try {
     const response = await fetch('../Scripts/get_user_info.php');
     const data = await response.json();
     
     if (data.logged_in) {
-      // Fill the form with user data
       const nameField = document.getElementById('customer-name');
       const emailField = document.getElementById('customer-email');
       const phoneField = document.getElementById('customer-phone');
@@ -55,7 +52,6 @@ async function autoFillUserInfo() {
       if (emailField) emailField.value = data.user.email || '';
       if (phoneField) phoneField.value = data.user.phone_number || '';
       
-      // Show a message that info was auto-filled
       const form = document.getElementById('checkout-form');
       if (form) {
         const message = document.createElement('div');
@@ -67,7 +63,6 @@ async function autoFillUserInfo() {
         message.style.border = '1px solid #c3e6cb';
         message.innerHTML = '✅ Your information has been auto-filled from your account';
         
-        // Insert the message after the "Your Information" heading
         const infoHeading = form.querySelector('h2');
         if (infoHeading) {
           infoHeading.insertAdjacentElement('afterend', message);

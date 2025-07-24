@@ -1,5 +1,4 @@
 <?php
-// register.php
 session_start();
 
 $servername = "localhost";
@@ -19,7 +18,6 @@ if ($_POST['email'] && $_POST['password'] && $_POST['full_name']) {
     $phone_number = $_POST['phone_number'] ?? '';
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     
-    // Check if email already exists
     $check_stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
     $check_stmt->bind_param("s", $email);
     $check_stmt->execute();

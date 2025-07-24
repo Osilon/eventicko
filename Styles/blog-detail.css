@@ -1,12 +1,8 @@
-/* General Body Styles */
 body {
     background-color: rgb(228, 228, 228);
     margin: 0;
 }
 
-/* Header Section */
-
-/* Header Row 1 (Logo, Search, Cart, Login) */
 .header-1 {
     display: flex;
     flex-direction: row;
@@ -20,14 +16,12 @@ body {
     color: white;
 }
 
-/* Logo and Title Group */
 .header-1 .logoANDtitle {
     display: flex;
     align-items: center;
     gap: 3px;
 }
 
-/* Search Bar Styling */
 .search-bar {
     display: flex;
     background-color: white;
@@ -70,7 +64,6 @@ body {
     width: 180px;
 }
 
-/* Register Button */
 .register {
     background-color: rgb(228, 228, 228);
     border: none;
@@ -92,16 +85,6 @@ body {
     color: white;
 }
 
-/* Cart Icon */
-.cart {
-    cursor: pointer;
-}
-
-.cart:hover {
-    filter: brightness() invert(1);
-}
-
-/* Header Row 2 (Navigation Buttons) */
 .header-2 {
     display: flex;
     flex-direction: row;
@@ -147,7 +130,6 @@ body {
     cursor: pointer;
 }
 
-/* Main blog detail container */
 .blog-detail-container {
   max-width: 1200px;
   margin: 2rem auto;
@@ -157,7 +139,6 @@ body {
   align-items: flex-start;
 }
 
-/* Blog content wrapper */
 .blog-content {
   flex: 2;
   background: white;
@@ -166,7 +147,6 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Blog image */
 .blog-image {
   width: 100%;
   height: 400px;
@@ -175,7 +155,6 @@ body {
   margin-bottom: 2rem;
 }
 
-/* Blog category badge */
 .blog-category {
   display: inline-block;
   background: #3b82f6;
@@ -188,7 +167,6 @@ body {
   margin-bottom: 1rem;
 }
 
-/* Blog title */
 .blog-title {
   font-size: 2.5rem;
   font-weight: bold;
@@ -197,7 +175,6 @@ body {
   line-height: 1.2;
 }
 
-/* Blog meta information */
 .blog-meta {
   display: flex;
   align-items: center;
@@ -220,7 +197,6 @@ body {
   font-size: 0.9rem;
 }
 
-/* Blog content text */
 .blog-text {
   font-size: 1.1rem;
   line-height: 1.8;
@@ -232,13 +208,11 @@ body {
   margin-bottom: 1.5rem;
 }
 
-/* Blog sidebar */
 .blog-sidebar {
   flex: 1;
   max-width: 400px;
 }
 
-/* Blog info card */
 .blog-info-card {
   background: white;
   border-radius: 20px;
@@ -285,7 +259,6 @@ body {
   color: #333;
 }
 
-/* Back button */
 .back-button {
   display: inline-flex;
   align-items: center;
@@ -307,7 +280,6 @@ body {
   transform: translateY(-2px);
 }
 
-/* Error message */
 .error-message {
   text-align: center;
   padding: 3rem;
@@ -320,7 +292,6 @@ body {
   margin-bottom: 1rem;
 }
 
-/* Loading state */
 .loading {
   text-align: center;
   padding: 3rem;
@@ -328,7 +299,6 @@ body {
   color: #666;
 }
 
-/* Footer Section */
 .footer-cont {
     background-color: #13347B;
     height: 60px;

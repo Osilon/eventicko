@@ -3,14 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const searchQuery = urlParams.get('query') || '';
   const searchLocation = urlParams.get('location') || '';
   
-  // Populate search inputs with current search terms
   document.getElementById('search-event-input').value = searchQuery;
   document.getElementById('search-location-input').value = searchLocation;
   
-  // Perform search
   performSearch(searchQuery, searchLocation);
   
-  // Add event listeners for new search
   setupSearchListeners();
 });
 
@@ -19,7 +16,6 @@ function setupSearchListeners() {
   const eventInput = document.getElementById('search-event-input');
   const locationInput = document.getElementById('search-location-input');
   
-  // Search button click
   searchButton.addEventListener('click', function() {
     const query = eventInput.value.trim();
     const location = locationInput.value.trim();
@@ -33,7 +29,6 @@ function setupSearchListeners() {
     }
   });
   
-  // Enter key support
   [eventInput, locationInput].forEach(input => {
     input.addEventListener('keypress', function(e) {
       if (e.key === 'Enter') {
@@ -82,7 +77,6 @@ function updateSearchInfo(query, location, resultsCount) {
     return;
   }
   
-  // Build search description
   let searchDescription = 'Search results';
   let searchTerms = [];
   
@@ -104,7 +98,6 @@ function updateSearchInfo(query, location, resultsCount) {
     <span class="results-count">${resultsCount} event${resultsCount !== 1 ? 's' : ''} found</span>
   `;
   
-  // Update page title
   let titleParts = ['Search Results'];
   if (query) titleParts.push(query);
   if (location) titleParts.push(location);

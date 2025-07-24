@@ -32,7 +32,6 @@ async function fetchBlogDetails(blogId) {
 function displayBlogDetails(blog) {
   const container = document.getElementById('blog-detail-container');
   
-  // Format the publish date
   const publishDate = new Date(blog.publish_date);
   const formattedDate = publishDate.toLocaleDateString('en-US', {
     weekday: 'long',
@@ -93,7 +92,6 @@ function displayBlogDetails(blog) {
 }
 
 function formatBlogContent(content) {
-  // Split content into paragraphs and wrap each in <p> tags
   return content
     .split('\n\n')
     .filter(paragraph => paragraph.trim() !== '')
@@ -102,7 +100,6 @@ function formatBlogContent(content) {
 }
 
 function calculateReadingTime(content) {
-  // Estimate reading time based on average reading speed of 200 words per minute
   const wordsPerMinute = 200;
   const wordCount = content.split(/\s+/).length;
   const readingTime = Math.ceil(wordCount / wordsPerMinute);

@@ -1,12 +1,8 @@
-/* General Body Styles */
 body {
     background-color: rgb(228, 228, 228);
     margin: 0;
 }
 
-/* Header Section */
-
-/* Header Row 1 (Logo, Search, Cart, Login) */
 .header-1 {
     display: flex;
     flex-direction: row;
@@ -20,14 +16,12 @@ body {
     color: white;
 }
 
-/* Logo and Title Group */
 .header-1 .logoANDtitle {
     display: flex;
     align-items: center;
     gap: 3px;
 }
 
-/* Search Bar Styling */
 .search-bar {
     display: flex;
     background-color: white;
@@ -70,7 +64,6 @@ body {
     width: 180px;
 }
 
-/* Register Button */
 .register {
     background-color: rgb(228, 228, 228);
     border: none;
@@ -92,16 +85,6 @@ body {
     color: white;
 }
 
-/* Cart Icon */
-.cart {
-    cursor: pointer;
-}
-
-.cart:hover {
-    filter: brightness() invert(1);
-}
-
-/* Header Row 2 (Navigation Buttons) */
 .header-2 {
     display: flex;
     flex-direction: row;
@@ -163,7 +146,6 @@ body {
     border-radius: 30px;
 }
 
-/* Blog card specific styles */
 #blog-cards-wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -264,7 +246,6 @@ body {
   margin-bottom: 1rem;
 }
 
-/* Footer Section */
 .footer-cont {
     background-color: #13347B;
     height: 60px;

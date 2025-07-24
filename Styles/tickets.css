@@ -1,12 +1,8 @@
-/* General Body Styles */
 body {
     background-color: rgb(228, 228, 228);
     margin: 0;
 }
 
-/* Header Section */
-
-/* Header Row 1 (Logo, Search, Cart, Login) */
 .header-1 {
     display: flex;
     flex-direction: row;
@@ -20,14 +16,12 @@ body {
     color: white;
 }
 
-/* Logo and Title Group */
 .header-1 .logoANDtitle {
     display: flex;
     align-items: center;
     gap: 3px;
 }
 
-/* Search Bar Styling */
 .search-bar {
     display: flex;
     background-color: white;
@@ -70,7 +64,6 @@ body {
     width: 180px;
 }
 
-/* Register Button */
 .register {
     background-color: rgb(228, 228, 228);
     border: none;
@@ -92,16 +85,6 @@ body {
     color: white;
 }
 
-/* Cart Icon */
-.cart {
-    cursor: pointer;
-}
-
-.cart:hover {
-    filter: brightness() invert(1);
-}
-
-/* Header Row 2 (Navigation Buttons) */
 .header-2 {
     display: flex;
     flex-direction: row;
@@ -147,7 +130,6 @@ body {
     cursor: pointer;
 }
 
-/* Divider */
 .divider {
     margin-top: 80px;
 }
@@ -169,7 +151,6 @@ body {
     border-radius: 30px;
 }
 
-/* Category Buttons Wrapper */
 .category-buttons {
     display: flex;
     flex-wrap: wrap;
@@ -189,7 +170,7 @@ body {
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    white-space: nowrap; /* Prevent text wrapping */
+    white-space: nowrap;
 }
 
 .category-button:hover {
@@ -198,11 +179,10 @@ body {
 }
 
 .category-button.active {
-    background-color: #333; /* Darker background for active button */
+    background-color: #333;
     transform: translateY(0);
 }
 
-/* Event Container Styles */
 .container {
     width: 210px;
     height: 350px;
@@ -248,7 +228,6 @@ body {
     box-shadow: 15px 15px 10px rgb(97, 97, 97);
 }
 
-/* Container Wrapper for Event Cards */
 #container-wrapper,
 #container-wrapper2 {
     margin-top: 50px;
@@ -262,7 +241,6 @@ body {
     margin-bottom: 50px;
 }
 
-/* Footer Section */
 .footer-cont {
     background-color: #13347B;
     height: 60px;

@@ -29,7 +29,6 @@ function displayBlogs(blogs) {
   }
   
   const blogCards = blogs.map(blog => {
-    // Format the publish date
     const publishDate = new Date(blog.publish_date);
     const formattedDate = publishDate.toLocaleDateString('en-US', {
       year: 'numeric',
@@ -37,7 +36,6 @@ function displayBlogs(blogs) {
       day: 'numeric'
     });
     
-    // Truncate short_content if it's too long
     const shortContent = blog.short_content.length > 150 
       ? blog.short_content.substring(0, 150) + '...' 
       : blog.short_content;

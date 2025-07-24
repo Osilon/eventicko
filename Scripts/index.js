@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   fetchAndRenderLocalEvents();
 
-  // Event listeners for category buttons
   homeCategoryButtons.forEach(button => {
     button.addEventListener('click', function() {
       const category = this.getAttribute('data-category');
