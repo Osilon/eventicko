@@ -1,6 +1,6 @@
 # eventicko
 
-A modern, responsive web application for discovering and purchasing event tickets. Built with vanilla HTML, CSS, JavaScript, and PHP with MySQL backend. (XAMPP)
+Eventicko is a modern web application for discovering and purchasing event tickets. Built with vanilla HTML, CSS, JavaScript, and PHP with MySQL backend. (XAMPP)
 
 Features implemented:
 - Browse events by category (Music, Nightlife, Visuals, Performing, Business, Sports, Workshops)
