@@ -13,5 +13,3 @@ Features implemented:
 - Dynamic blog system with detailed post views
 
 This project was to be made for my University's Academic Practicum, which I did at a private Software Company in my home town.
-
-![imgui](https://i.postimg.cc/sgHYqwfP/image.png)
